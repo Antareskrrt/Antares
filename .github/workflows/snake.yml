@@ -1,9 +1,10 @@
 name: Generate Contribution Snake
 
 on:
+  workflow_dispatch:
+
   schedule:
     - cron: "0 0 * * *"
-  workflow_dispatch:
 
 permissions:
   contents: write
@@ -16,12 +17,12 @@ jobs:
       - name: Generate snake
         uses: Platane/snk@v3
         with:
-          github_user_name: Campgreve
+          github_user_name: Antareskrrt
           outputs: |
             dist/github-contribution-grid-snake.svg
             dist/github-contribution-grid-snake-dark.svg?palette=github-dark
 
-      - name: Deploy
+      - name: Push to output branch
         uses: crazy-max/ghaction-github-pages@v4
         with:
           build_dir: dist
